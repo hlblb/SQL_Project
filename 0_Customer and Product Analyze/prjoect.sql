@@ -84,8 +84,8 @@ SELECT 'Offices' AS table_name,
 -- Question 1: Which Products Should We Order More of or Less of? --
 -- Screen 4. Write a query to compute the low stock for each product using a correlated subquery.
   SELECT productCode, ROUND(SUM(quantityOrdered)*1.0/(SELECT quantityInStock 
-														FROM products pr
-													   WHERE pr.productCode = od.productCode),2) as low_stock
+							FROM products pr
+         						   WHERE pr.productCode = od.productCode),2) as low_stock
     FROM orderdetails od
 GROUP BY productCode
 ORDER BY low_stock DESC
@@ -103,8 +103,8 @@ WITH
 low_stock_table AS(
 
 	SELECT productCode, ROUND(SUM(quantityOrdered)*1.0/(SELECT quantityInStock 
-														FROM products pr
-													   WHERE pr.productCode = od.productCode),2) as low_stock
+							      FROM products pr
+							     WHERE pr.productCode = od.productCode),2) as low_stock
      FROM orderdetails od
  GROUP BY productCode
  ORDER BY low_stock DESC
